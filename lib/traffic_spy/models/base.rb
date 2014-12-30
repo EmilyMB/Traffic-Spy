@@ -11,6 +11,7 @@ end
 
 require_relative 'sources'
 require_relative 'payload'
+require_relative 'url'
 #
 # Require all the files within the model directory here...
 #
