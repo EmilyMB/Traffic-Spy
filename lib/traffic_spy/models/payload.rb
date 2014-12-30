@@ -1,27 +1,23 @@
 module TrafficSpy
   class Payload
-    attr_reader :identifier,
-                :rootUrl
+    attr_reader :payload
 
-    def initialize(identifier, rootUrl)
-      @identifier = identifier
-      @rootUrl    = rootUrl
+    def initialize(payload)
+      @payload = payload
     end
 
     def self.table
-      DB.from(:sources)
+      DB.from(:payload)
     end
 
-    def self.create(identifier, rootUrl)
+    def self.create(payload)
       table.insert(
-      :identifier => identifier,
-      :rootUrl    => rootUrl
+      :raw_data => payload
       )
     end
 
-    def self.contains(identifier)
-      puts 'I am here'
-      table.where(identifier: identifier).empty?
+    def self.contains(payload)
+      table.where(raw_data: payload).empty?
     end
   end
 end

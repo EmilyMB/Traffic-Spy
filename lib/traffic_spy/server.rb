@@ -11,22 +11,14 @@ module TrafficSpy
       erb :error
     end
 
-    error 400 do
-      "Missing Parameters"
-    end
-
-    error 403 do
-      "Something is wrong with your Authentication"
-    end
-
     post '/sources' do
       identifier = params[:identifier]
       rootUrl = params[:rootUrl]
 
       if identifier.nil? || rootUrl.nil?
-        400
+        halt 400, "Missing Parameters"
       elsif !Sources.contains(identifier)
-        403
+        halt 403, "Identifier already exists"
       else
         Sources.create(identifier,rootUrl)
         "{\"identifier\":\"#{identifier}\"}"
@@ -36,14 +28,14 @@ module TrafficSpy
     post '/sources/:identifier/data' do
       payload = params[:payload]
       if Sources.contains(params[:identifier])
-        403
+        halt 403, "Application not registered"
       elsif payload.nil?
-        400
-      elsif
-        #payload exists
+        halt 400, "Missing Payload"
+      elsif !Payload.contains(payload)
+        halt 403, "Already recieved request"
       else
-        "nice"
-      "#{payload}"
+        Payload.create(payload)
+        "OK"
       end
     end
   end

@@ -10,6 +10,7 @@ module TrafficSpy
 end
 
 require_relative 'sources'
+require_relative 'payload'
 #
 # Require all the files within the model directory here...
 #
