@@ -15,14 +15,21 @@ module TrafficSpy
       "Missing Parameters"
     end
 
+    error 403 do
+      "That Identifier already exists"
+    end
+
     post '/sources' do
       identifier = params[:identifier]
       rootUrl = params[:rootUrl]
-      Sources.create(identifier,rootUrl)
+
       if identifier.nil? || rootUrl.nil?
         400
+      elsif !Sources.contains(identifier)
+        403
       else
-        "#{identifier} and #{rootUrl}"
+        Sources.create(identifier,rootUrl)
+        "{\"identifier\":\"#{identifier}\"}"
       end
     end
 
