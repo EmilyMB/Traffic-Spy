@@ -9,6 +9,7 @@ module TrafficSpy
 
 end
 
+require_relative 'sources'
 #
 # Require all the files within the model directory here...
 #
