@@ -16,7 +16,7 @@ module TrafficSpy
     end
 
     error 403 do
-      "That Identifier already exists"
+      "Something is wrong with your Authentication"
     end
 
     post '/sources' do
@@ -33,5 +33,18 @@ module TrafficSpy
       end
     end
 
+    post '/sources/:identifier/data' do
+      payload = params[:payload]
+      if Sources.contains(params[:identifier])
+        403
+      elsif payload.nil?
+        400
+      elsif
+        #payload exists
+      else
+        "nice"
+      "#{payload}"
+      end
+    end
   end
 end
