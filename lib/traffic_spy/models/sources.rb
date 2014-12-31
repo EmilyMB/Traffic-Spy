@@ -20,7 +20,6 @@ module TrafficSpy
     end
 
     def self.contains(identifier)
-      puts 'I am here'
       table.where(identifier: identifier).empty?
     end
   end
