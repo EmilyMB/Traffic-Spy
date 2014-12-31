@@ -38,19 +38,5 @@ require 'json'
       @userAgent_id       = UserAgent.create(payload_hash['userAgent'])
       @resolution_id   = Resolution.create(payload_hash['resolutionWidth'], payload_hash['resolutionHeight'])
     end
-
-    def self.find_by_identifier(identifier)
-    #  p table.select(:payload__id)
-      #  data = table.where(identifier: identifier).join(DB.from(:url), :id => :url_id).join(DB.from(:resolution), :id => :resolution_id)
-        data = table.where(identifier: identifier)
-                   .join(DB.from(:url), :id => :url_id)
-      #              .join(DB.from(:resolution), :id => :payload__id)
-
-      # sort_by_url_count(data),
-    end
-
-    # def self.sort_by_url_count(data)
-    #   data.select([:count, :site_url]).order(Sequel.desc(:count))
-    # end
   end
 end

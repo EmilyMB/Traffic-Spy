@@ -46,5 +46,9 @@ module TrafficSpy
     def response_times
       payloads.order(Sequel.desc(:respondedIn))
     end
+
+    def events
+      payloads.join(DB.from(:eventName), :id => :eventName_id)
+    end
   end
 end

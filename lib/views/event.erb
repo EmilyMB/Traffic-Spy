@@ -1,0 +1,28 @@
+<h1><%=identifier%>'s Events!!!!</h1>
+  <h2>Events by Popularity</h2>
+    <table width=300 border=1>
+    <tr>
+      <td width="200">Events</td>
+      <td>Count</td>
+    </tr>
+    <tr>
+      <% source.events.each do |event| %>
+      <td><%= event[:event] %></td>
+      <td> <%=  event[:count] %></td> <br/></tr>
+      <% end %>
+    <br/>
+  </table>
+
+
+      <h2>All URLs</h2>
+      <p>
+        <% source.urls.each do |url| %>
+          <a href="/sources/<%= identifier %>/urls/<%= url[:site_url].split("/")[-1] %>"><%= url[:site_url] %></a><br/>
+          <% end %>
+          <br/>
+      </p>
+
+      <h2>Agregate Date</h2>
+      <p>
+        <a href="/sources/<%=identifier%>/events">Click for all event data</a><br/>
+      </p>

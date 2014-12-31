@@ -46,5 +46,13 @@ module TrafficSpy
         erb :identifier, locals: { identifier: params[:identifier], source: Sources.find_by_identifier(params[:identifier])}
       end
     end
+
+    get '/sources/:identifier/events' do
+      if Sources.find_by_identifier(params[:identifier]).events.nil?
+        erb :event_error
+      else
+        erb :event, locals: { identifier: params[:identifier], source: Sources.find_by_identifier(params[:identifier])}
+      end
+    end
   end
 end

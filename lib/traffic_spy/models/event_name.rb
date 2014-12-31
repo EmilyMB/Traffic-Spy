@@ -13,8 +13,11 @@ module TrafficSpy
     def self.create(event)
       if !contains(event)
         table.insert(
-        :event => event
+        :event => event,
+        :count => 1
         )
+      else
+        count_update(event)
       end
       return_id(event)
     end
@@ -23,6 +26,9 @@ module TrafficSpy
       table.where(event: event).map{ |id| id[:id] }.first
     end
 
+    def self.count_update(event)
+      table.where(event: event).update(:count => :count + 1)
+    end
 
     def self.contains(event)
       !table.where(event: event).empty?
