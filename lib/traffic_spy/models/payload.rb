@@ -22,6 +22,8 @@ require 'json'
       :url_id        => @url_id,
       :referredBy_id => @referredBy_id,
       :requestType_id => @requestType_id,
+      :eventName_id => @eventName_id,
+      :userAgent_id => @userAgent_id,
       :requestedAt   => payload_hash['requestedAt'],
       :respondedIn   =>  payload_hash['respondedIn'],
       :parameters    => payload_hash['parameters'],
@@ -37,8 +39,8 @@ require 'json'
       @url_id               = Url.create(payload_hash['url'])
       @referredBy_id        = ReferredBy.create(payload_hash['referredBy'])
       @requestType_id     =  RequestType.create(payload_hash['requestType'])
-      # @eventName_id       = payload_hash[:eventName]
-      # @userAgent_id       = payload_hash[:userAgent]
+      @eventName_id       = EventName.create(payload_hash['eventName'])
+      @userAgent_id       = UserAgent.create(payload_hash['userAgent'])
       # @resolution_width   = payload_hash[:resolutionWidth]
       # @resolution_height  = payload_hash[:resolutionHeight]
     end

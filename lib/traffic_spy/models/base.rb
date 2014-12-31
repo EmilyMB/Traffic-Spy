@@ -14,6 +14,8 @@ require_relative 'payload'
 require_relative 'url'
 require_relative 'referred_by'
 require_relative 'request_type'
+require_relative 'event_name'
+require_relative 'user_agent'
 #
 # Require all the files within the model directory here...
 #
