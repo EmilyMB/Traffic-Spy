@@ -18,9 +18,12 @@ require 'json'
       payload_hash = JSON.parse(payload)
       update_tables(payload_hash)
       table.insert(
-      :raw_data => payload,
-      :url_id   => @url_id
-
+      :raw_data    => payload,
+      :url_id      => @url_id,
+      :requestedAt => payload_hash['requestedAt'],
+      :respondedIn =>  payload_hash['respondedIn'],
+      :parameters  => payload_hash['parameters'],
+      :ip          => payload_hash['ip']
       )
     end
 
@@ -30,16 +33,12 @@ require 'json'
 
     def self.update_tables(payload_hash)
       @url_id               = Url.create(payload_hash['url'])
-      # @requestedAt        = payload_hash[:requestedAt]
-      # @respondedIn        = payload_hash[:respondedIn]
-      # @referredBy_id      = payload_hash[:referredBy]
+    #  @referredBy_id      =  ReferredBy.create(payload_hash['referredBy'])
       # @requestType_id     = payload_hash[:requestType]
-      # @parameters         = payload_hash[:parameters]
       # @eventName_id       = payload_hash[:eventName]
       # @userAgent_id       = payload_hash[:userAgent]
       # @resolution_width   = payload_hash[:resolutionWidth]
       # @resolution_height  = payload_hash[:resolutionHeight]
-      # @ip                 = payload_hash[:ip]
     end
   end
 end

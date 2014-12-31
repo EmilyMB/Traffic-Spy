@@ -33,7 +33,7 @@ module TrafficSpy
     end
 
     def self.contains(url)
-      table.where(site_url: url).empty?
+      !table.where(site_url: url).empty?
     end
   end
 end
