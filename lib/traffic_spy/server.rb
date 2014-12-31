@@ -34,7 +34,7 @@ module TrafficSpy
       elsif !Payload.contains(payload)
         halt 403, "Already recieved request"
       else
-        Payload.create(payload)
+        Payload.create(payload, params[:identifier])
         "OK"
       end
     end
@@ -43,7 +43,7 @@ module TrafficSpy
       if Sources.contains(params[:identifier])
         erb :error, locals: { identifier: params[:identifier]}
       else
-        erb :identifier, locals: { identifier: params[:identifier]}
+        erb :identifier, locals: { identifier: params[:identifier], data: Payload.find_by_identifier(params[:identifier])}
       end
     end
   end

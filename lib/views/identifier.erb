@@ -1,3 +1,8 @@
 <h1><%=identifier%>'s Data!!!!</h1>
   <p>
+    <h2>Site URL         Count</h2>
+    <% data.select([:site_url], [:count]).each do |url| %>
+    <%= url[:site_url] %> <%=  url[:count] %> <br/>
+    <% end %>
+    <br/>
   </p>

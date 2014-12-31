@@ -7,11 +7,12 @@ require 'json'
       DB.from(:payload)
     end
 
-    def self.create(payload)
+    def self.create(payload, identifier)
       payload_hash = JSON.parse(payload)
       update_tables(payload_hash)
       table.insert(
       :raw_data      => payload,
+      :identifier => identifier,
       :url_id        => @url_id,
       :referredBy_id => @referredBy_id,
       :requestType_id => @requestType_id,
@@ -36,6 +37,15 @@ require 'json'
       @eventName_id       = EventName.create(payload_hash['eventName'])
       @userAgent_id       = UserAgent.create(payload_hash['userAgent'])
       @resolution_id   = Resolution.create(payload_hash['resolutionWidth'], payload_hash['resolutionHeight'])
+    end
+
+    def self.find_by_identifier(identifier)
+      data = table.where(identifier: identifier).join(DB.from(:url), :id => :url_id)
+      sort_by_url_count(data)
+    end
+
+    def self.sort_by_url_count(data)
+      data.select([:count, :site_url]).order(Sequel.desc(:count))
     end
   end
 end
