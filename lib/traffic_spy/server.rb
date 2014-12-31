@@ -38,5 +38,13 @@ module TrafficSpy
         "OK"
       end
     end
+
+    get '/sources/:identifier' do
+      if Sources.contains(params[:identifier])
+        erb :error, locals: { identifier: params[:identifier]}
+      else
+        erb :identifier, locals: { identifier: params[:identifier]}
+      end
+    end
   end
 end
