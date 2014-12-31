@@ -14,10 +14,10 @@
   </table>
 
 
-      <h2>All URLs</h2>
-      <p>
-        <% source.events.group_and_count(:event).each do |event| %>
-          <a href="/sources/<%= identifier %>/events/<%= event[:event] %>"><%= event[:event] %></a><br/>
-          <% end %>
-          <br/>
-      </p>
+  <h2>All URLs</h2>
+  <p>
+    <% source.events.group_and_count(:event).each do |event| %>
+      <a href="/sources/<%= identifier %>/events/<%= event[:event] %>"><%= event[:event] %></a><br/>
+      <% end %>
+      <br/>
+  </p>

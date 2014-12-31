@@ -29,10 +29,12 @@
   <table width=300 border=1>
     <tr>
       <td width="200">Resolution</td>
+      <td>Count</td>
     </tr>
     <tr>
-      <% source.resolutions.each do |resolution| %>
-      <td><%= resolution[:resolution] %></td></tr>
+      <% source.resolutions.group_and_count(:resolution).each do |resolution| %>
+      <td><%= resolution[:resolution] %></td>
+      <td> <%=  resolution[:count] %></td> <br/></tr>
       <% end %>
       <br/>
     </table>
@@ -41,23 +43,25 @@
     <table width=300 border=1>
       <tr>
         <td width="200">Response Time(s)</td>
+        <td>Count</td>
       </tr>
       <tr>
-        <% source.response_times.each do |time| %>
-        <td><%= time[:respondedIn] %></td></tr>
+        <% source.response_times.group_and_count(:respondedIn).each do |time| %>
+        <td><%= time[:respondedIn] %></td>
+        <td> <%= time[:count] %></td> <br/></tr>
         <% end %>
         <br/>
       </table>
 
       <h2>All URLs</h2>
       <p>
-        <% source.urls.each do |url| %>
+        <% source.urls.group_and_count(:site_url).each do |url| %>
           <a href="/sources/<%= identifier %>/urls/<%= url[:site_url].split("/")[-1] %>"><%= url[:site_url] %></a><br/>
           <% end %>
           <br/>
       </p>
 
-      <h2>Agregate Date</h2>
+      <h2>Aggregate Event Data</h2>
       <p>
         <a href="/sources/<%=identifier%>/events">Click for all event data</a><br/>
       </p>
