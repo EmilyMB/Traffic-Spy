@@ -2,24 +2,62 @@
     <table width=300 border=1>
     <tr>
       <td width="200">Site URL</td>
-      <td>Count</td>
+      <td>Requests</td>
     </tr>
     <tr>
-      <% data.order(Sequel.desc(:count)).each do |url| %>
+      <% source.urls.each do |url| %>
       <td><%= url[:site_url] %></td>
       <td> <%=  url[:count] %></td> <br/></tr>
       <% end %>
     <br/>
   </table>
+
   <table width=300 border=1>
     <tr>
-      <td width="200">Browsers</td>
+      <td width="200">Browser</td>
       <td>OS</td>
     </tr>
     <tr>
-      <% data.each do |url| %>
-      <td><%= url %></td>
-      <td> <%=  url[:count] %></td> <br/></tr>
+      <% source.browsers.each do |browser| %>
+      <td><%= browser[:browser] %></td>
+      <td> <%=  browser[:os] %></td> <br/></tr>
       <% end %>
       <br/>
     </table>
+
+  <h2>Resolution</h2>
+  <table width=300 border=1>
+    <tr>
+      <td width="200">Resolution</td>
+    </tr>
+    <tr>
+      <% source.resolutions.each do |resolution| %>
+      <td><%= resolution[:resolution] %></td></tr>
+      <% end %>
+      <br/>
+    </table>
+
+    <h2>Response Time(longest to shortest)</h2>
+    <table width=300 border=1>
+      <tr>
+        <td width="200">Response Time(s)</td>
+      </tr>
+      <tr>
+        <% source.response_times.each do |time| %>
+        <td><%= time[:respondedIn] %></td></tr>
+        <% end %>
+        <br/>
+      </table>
+
+      <h2>All URLs</h2>
+      <p>
+        <% source.urls.each do |url| %>
+          <a href="/sources/<%= identifier %>/urls/<%= url[:site_url].split("/")[-1] %>"><%= url[:site_url] %></a><br/>
+          <% end %>
+          <br/>
+      </p>
+
+      <h2>Agregate Date</h2>
+      <p>
+        <a href="/sources/<%=identifier%>/events">Click for all event data</a><br/>
+      </p>

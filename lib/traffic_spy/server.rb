@@ -43,7 +43,7 @@ module TrafficSpy
       if Sources.contains(params[:identifier])
         erb :error, locals: { identifier: params[:identifier]}
       else
-        erb :identifier, locals: { identifier: params[:identifier], data: Payload.find_by_identifier(params[:identifier])}
+        erb :identifier, locals: { identifier: params[:identifier], source: Sources.find_by_identifier(params[:identifier])}
       end
     end
   end
