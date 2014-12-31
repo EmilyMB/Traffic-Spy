@@ -11,3 +11,15 @@
       <% end %>
     <br/>
   </table>
+  <table width=300 border=1>
+    <tr>
+      <td width="200">Browsers</td>
+      <td>OS</td>
+    </tr>
+    <tr>
+      <% data.each do |url| %>
+      <td><%= url %></td>
+      <td> <%=  url[:count] %></td> <br/></tr>
+      <% end %>
+      <br/>
+    </table>
