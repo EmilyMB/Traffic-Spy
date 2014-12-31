@@ -40,12 +40,12 @@ require 'json'
     end
 
     def self.find_by_identifier(identifier)
-      data = table.where(identifier: identifier).join(DB.from(:url), :id => :url_id)
-      sort_by_url_count(data)
+       table.where(identifier: identifier).join(DB.from(:url), :id => :url_id)
+      # sort_by_url_count(data),
     end
 
-    def self.sort_by_url_count(data)
-      data.select([:count, :site_url]).order(Sequel.desc(:count))
-    end
+    # def self.sort_by_url_count(data)
+    #   data.select([:count, :site_url]).order(Sequel.desc(:count))
+    # end
   end
 end

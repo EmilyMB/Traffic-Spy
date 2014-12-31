@@ -1,8 +1,14 @@
 <h1><%=identifier%>'s Data!!!!</h1>
-  <p>
-    <h2>Site URL         Count</h2>
-    <% data.select([:site_url], [:count]).each do |url| %>
-    <%= url[:site_url] %> <%=  url[:count] %> <br/>
-    <% end %>
+    <table width=300 border=1>
+    <tr>
+      <td width="200">Site URL</td>
+      <td>Count</td>
+    </tr>
+    <tr>
+      <% data.select([:count, :site_url]).order(Sequel.desc(:count)).each do |url| %>
+      <td> <%=url[:row] %></td>
+      <td><%= url[:site_url] %></td>
+      <td> <%=  url[:count] %></td> <br/></tr>
+      <% end %>
     <br/>
-  </p>
+  </table>
