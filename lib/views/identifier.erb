@@ -5,8 +5,7 @@
       <td>Count</td>
     </tr>
     <tr>
-      <% data.select([:count, :site_url]).order(Sequel.desc(:count)).each do |url| %>
-      <td> <%=url[:row] %></td>
+      <% data.order(Sequel.desc(:count)).each do |url| %>
       <td><%= url[:site_url] %></td>
       <td> <%=  url[:count] %></td> <br/></tr>
       <% end %>
