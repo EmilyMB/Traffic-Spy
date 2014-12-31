@@ -6,7 +6,7 @@
       <td>Count</td>
     </tr>
     <tr>
-      <% source.events.each do |event| %>
+      <% source.events.group_and_count(:event).each do |event| %></td>
       <td><%= event[:event] %></td>
       <td> <%=  event[:count] %></td> <br/></tr>
       <% end %>
@@ -16,13 +16,8 @@
 
       <h2>All URLs</h2>
       <p>
-        <% source.urls.each do |url| %>
-          <a href="/sources/<%= identifier %>/urls/<%= url[:site_url].split("/")[-1] %>"><%= url[:site_url] %></a><br/>
+        <% source.events.group_and_count(:event).each do |event| %>
+          <a href="/sources/<%= identifier %>/events/<%= event[:event] %>"><%= event[:event] %></a><br/>
           <% end %>
           <br/>
-      </p>
-
-      <h2>Agregate Date</h2>
-      <p>
-        <a href="/sources/<%=identifier%>/events">Click for all event data</a><br/>
       </p>
