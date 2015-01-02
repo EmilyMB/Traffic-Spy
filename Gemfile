@@ -10,6 +10,7 @@ group :development do
   gem 'rb-fsevent', '~> 0.9'
   gem 'capybara'
   gem 'minitest'
+  gem 'nokogiri'
 end
 
 group :evaluations do
