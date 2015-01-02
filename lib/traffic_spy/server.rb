@@ -63,7 +63,9 @@ module TrafficSpy
         if Sources.relative_path?(identifier,relative, path)
           erb :url, locals: { identifier: identifier,
                               source: Sources.find_all_by_relative_path(identifier,relative,path),
-                              request_types: Sources.request_types}
+                              request_types: Sources.request_types,
+                              referred_by: Sources.referred_by,
+                              user_agents_db: Sources.user_agents }
         else
           erb :url_error
         end

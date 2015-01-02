@@ -2,14 +2,25 @@
 <p>
   <% response_times = [] %>
   <% verb_ids = [] %>
+  <% referrers = [] %>
+  <% user_agents = [] %>
   <% source.each do |url|%>
     <% response_times << url[:respondedIn] %>
     <% verb_ids << url[:requestType_id] %>
+    <% referrers << url[:referredBy_id] %>
+    <% user_agents << url[:userAgent_id] %>
   <% end %>
-    Longest Response Time: <%=response_times.max %><br>
-    Shortest Response Time: <%=response_times.min %><br>
-    Average Response Time: <%=response_times.reduce(:+)%><br>
-    HTTP Verbs: <% verb_ids.uniq.each do |id| %>
+    <b>Longest Response Time:</b> <%=response_times.max %><br>
+    <b>Shortest Response Time:</b> <%=response_times.min %><br>
+    <b>Average Response Time:</b> <%=response_times.reduce(:+) / response_times.size%><br>
+    <b>HTTP Verbs:</b> <% verb_ids.uniq.each do |id| %>
     <%= request_types.where(:id => id).to_a[0][:request] %>
-    <% end %>
+    <% end %><br>
+    <b>Referred By:</b> <% referrers.uniq.each do |id| %>
+    <%= referred_by.where(:id => id).to_a[0][:url] %>
+    <% end %><br>
+    <b>User Agents:</b> <% user_agents.uniq.each do |id| %>
+    <% user_agent = user_agents_db.where(:id => id).to_a[0] %>
+    Browser: <%= user_agent[:browser]%> OS: <%= user_agent[:os] %>
+    <% end %><br>
 </p>

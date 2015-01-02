@@ -88,5 +88,13 @@ module TrafficSpy
     def self.request_types
       DB.from(:requestedType)
     end
+
+    def self.referred_by
+      DB.from(:referredBy)
+    end
+
+    def self.user_agents
+      DB.from(:userAgent)
+    end
   end
 end
