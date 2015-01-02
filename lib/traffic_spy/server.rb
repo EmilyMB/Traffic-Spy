@@ -48,10 +48,10 @@ module TrafficSpy
     end
 
     get '/sources/:identifier/events' do
-      if Sources.find_all_by_identifier(params[:identifier]).events.nil?
+      if Sources.find_all_by_identifier(params[:identifier]).events.empty?
         erb :event_error
       else
-        erb :event, locals: { identifier: params[:identifier], source: Sources.find_all_by_identifier(params[:identifier])}
+        erb :events, locals: { identifier: params[:identifier], source: Sources.find_all_by_identifier(params[:identifier])}
       end
     end
 
@@ -69,6 +69,18 @@ module TrafficSpy
         else
           erb :url_error
         end
+      end
+    end
+
+    get '/sources/:identifier/events/:event_name' do
+      identifier = params[:identifier]
+      event = params[:event_name]
+      all_by_event = Sources.find_all_by_event(identifier, event)
+      if all_by_event.empty?
+        erb :event_not_defined, locals: {event: event, identifier: identifier}
+      else
+        erb :event, locals: { event: all_by_event,
+                              event_name: event}
       end
     end
   end

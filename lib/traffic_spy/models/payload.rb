@@ -1,5 +1,6 @@
 module TrafficSpy
 require 'json'
+require 'time'
 
   class Payload
 
@@ -19,7 +20,7 @@ require 'json'
       :eventName_id => @eventName_id,
       :userAgent_id => @userAgent_id,
       :resolution_id => @resolution_id,
-      :requestedAt   => payload_hash['requestedAt'],
+      :requestedAt2   => Time.parse(payload_hash['requestedAt']),
       :respondedIn   =>  payload_hash['respondedIn'],
       :parameters    => payload_hash['parameters'],
       :ip            => payload_hash['ip']

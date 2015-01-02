@@ -96,5 +96,13 @@ module TrafficSpy
     def self.user_agents
       DB.from(:userAgent)
     end
+
+    def self.find_all_by_event(identifier, event_name)
+      events = []
+      find_all_by_identifier(identifier).events.each do |event|
+        events << event if event[:event] == event_name
+      end
+      events
+    end
   end
 end
