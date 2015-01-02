@@ -8,6 +8,8 @@ group :development do
   gem 'rspec'
   gem 'guard-rspec'
   gem 'rb-fsevent', '~> 0.9'
+  gem 'capybara'
+  gem 'minitest'
 end
 
 group :evaluations do

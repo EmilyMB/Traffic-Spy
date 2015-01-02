@@ -75,13 +75,9 @@ module TrafficSpy
         end
       else
         find_all_by_identifier(identifier).urls.each do |url|
-          puts "Url #{url}"
           results << url if url[:site_url].split('/')[-2] + '/' + url[:site_url].split('/')[-1] == relative
-          puts "HI string: #{url[:site_url].split('/')[-2]}" + '/' + "#{url[:site_url].split('/')[-1]}"
-          puts "relative: #{relative}"
         end
       end
-      puts "results: #{results}"
       results
     end
 
