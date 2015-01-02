@@ -25,5 +25,13 @@ module TrafficSpy
       post '/sources', "identifier=jumpstartlab&rootUrl=http://google.com"
       assert_equal 200, last_response.status
     end
+
+    def test_error_when_identifier_exists
+      post '/sources', "identifier=jumpstartlab&rootUrl=http://google.com"
+      assert_equal 200, last_response.status
+
+      post '/sources', "identifier=jumpstartlab&rootUrl=http://google.com"
+      assert_equal 403, last_response.status
+    end
   end
 end
