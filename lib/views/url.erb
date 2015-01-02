@@ -1,0 +1,15 @@
+<h1>Urls</h1>
+<p>
+  <% response_times = [] %>
+  <% verb_ids = [] %>
+  <% source.each do |url|%>
+    <% response_times << url[:respondedIn] %>
+    <% verb_ids << url[:requestType_id] %>
+  <% end %>
+    Longest Response Time: <%=response_times.max %><br>
+    Shortest Response Time: <%=response_times.min %><br>
+    Average Response Time: <%=response_times.reduce(:+)%><br>
+    HTTP Verbs: <% verb_ids.uniq.each do |id| %>
+    <%= request_types.where(:id => id).to_a[0][:request] %>
+    <% end %>
+</p>

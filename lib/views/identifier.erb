@@ -56,9 +56,13 @@
       <h2>All URLs</h2>
       <p>
         <% source.urls.group_and_count(:site_url).each do |url| %>
+          <% if url[:site_url].split('/').size == 4 %>
           <a href="/sources/<%= identifier %>/urls/<%= url[:site_url].split("/")[-1] %>"><%= url[:site_url] %></a><br/>
+          <% else %>
+          <a href="/sources/<%= identifier %>/urls/<%= url[:site_url].split("/")[-2] + '/' + url[:site_url].split("/")[-1] %>"><%= url[:site_url] %></a><br/>
           <% end %>
-          <br/>
+        <% end %>
+        <br/>
       </p>
 
       <h2>Aggregate Event Data</h2>
