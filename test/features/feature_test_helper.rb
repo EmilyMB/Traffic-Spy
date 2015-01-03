@@ -23,6 +23,7 @@ module TrafficSpy
       Capybara.reset_sessions!
       Capybara.use_default_driver
       DB[:sources].delete
+      DB[:payload].delete
     end
   end
 end
