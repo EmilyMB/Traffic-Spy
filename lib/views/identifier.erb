@@ -1,4 +1,5 @@
 <h1><%=identifier%>'s Data!!!!</h1>
+  <div id="urls">
     <table width=300 border=1>
     <tr>
       <td width="200">Site URL</td>
@@ -10,8 +11,10 @@
       <td> <%=  url[:count] %></td> <br/></tr>
       <% end %>
     <br/>
-  </table>
+    </table>
+  </div>
 
+  <div id="browser">
   <table width=300 border=1>
     <tr>
       <td width="200">Browser</td>
@@ -24,7 +27,9 @@
       <% end %>
       <br/>
     </table>
+  </div>
 
+  <div id="resolution">
   <h2>Resolution</h2>
   <table width=300 border=1>
     <tr>
@@ -38,7 +43,9 @@
       <% end %>
       <br/>
     </table>
+  </div>
 
+  <div id="response_time">
     <h2>Response Time(longest to shortest)</h2>
     <table width=300 border=1>
       <tr>
@@ -52,7 +59,9 @@
         <% end %>
         <br/>
       </table>
+  </div>
 
+  <div id="all_urls">
       <h2>All URLs</h2>
       <p>
         <% source.urls.group_and_count(:site_url).each do |url| %>
@@ -64,8 +73,11 @@
         <% end %>
         <br/>
       </p>
+  </div>
 
+  <div id="event_link">
       <h2>Aggregate Event Data</h2>
       <p>
         <a href="/sources/<%=identifier%>/events">Click for all event data</a><br/>
       </p>
+  </div>
